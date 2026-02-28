@@ -9,7 +9,9 @@
 I find bugs. I read source code, trace execution paths, and write reports that go upstream.
 
 **Recent contributions:**
-- 🐛 **Linux kernel / mt76** — Identified and reported driver bugs in the MT7921 WiFi chip, including TX power reporting issues and USB reset behavior for SEFI recovery at high altitude. Patches submitted to the mt76 project.
+- 🐛 **Linux kernel / mt76** — Two patches submitted to `linux-wireless` for the MT7921U chip:
+  - [`[PATCH 1/2]`](https://lore.kernel.org/linux-wireless/CANAPQzi_eC2n_mfxrcZ46tpCDB1_RkkbpnVd2Y=P=Ua4iPU2gQ@mail.gmail.com/T/#t) `mt76: connac: fix txpower_cur not updated in mt76_connac_mcu_set_rate_txpower()` — fixes `mt76_get_txpower()` always reporting 3 dBm because `txpower_cur` was never updated after sending the SKU table to firmware. Traces root cause to the zero-initialized value + 2-chain delta path in `mt76_get_txpower()`.
+  - `[PATCH 2/2]` `mt76: mt7921u: add USB reset on SEFI chip recovery` — adds `usb_queue_reset_device()` in both `mt7921u_mac_reset()` and `mt792xu_init_reset()` so the chip recovers automatically from cosmic-radiation-induced SEFIs instead of hanging permanently. Tested at 2400m altitude, Bogotá, Colombia.
 - 🔒 **Dolibarr ERP** — Security research and vulnerability reporting. Analyzed root causes in the codebase and submitted findings through responsible disclosure.
 - 🖥️ **cosmic-comp** — Forensic analysis of the Wayland compositor source (Rust). Identified a tiling geometry bug triggered by fullscreen requests from tiled windows, traced to `update_positions()` in `tiling/mod.rs`. Filed as [issue #2146](https://github.com/pop-os/cosmic-comp/issues/2146) after ruling out PR #2099 as a fix.
 
