@@ -1,49 +1,31 @@
-# Bryam Vargas — `@bryamzxz`
+# Bryam Vargas · `@bryamzxz`
 
-Independent security researcher based in Bogotá, Colombia.
-Source-level vulnerability research in PHP web applications, Linux kernel drivers, and FOSS infrastructure.
+Independent security researcher in Colombia. Source-first: read the code, trace input to sink, reproduce in an isolated lab, disclose in coordination with the maintainers.
 
----
+**[bryamzxz.github.io](https://bryamzxz.github.io)**: write-ups and disclosure policy.
 
-## Current work
+## Disclosures
 
-Active vulnerability research projects in coordinated disclosure with upstream maintainers and MITRE. Findings will be made public as their disclosure timelines complete.
+- **Dolibarr ERP/CRM**: CVE-2026-37711, CVE-2026-37712, CVE-2026-37713 (CVSS 9.1 / 9.1 / 8.1). PHP code injection through `dol_eval()` and OS command execution through the cron scheduler. [Write-up](https://bryamzxz.github.io/2026/05/25/dol_eval-five-years/)
 
----
+## Projects
 
-## Open source
+- **[tinylink](https://github.com/bryamzxz/tinylink)**: a clean-room, Tailscale-compatible node for the bare ESP32 (no PSRAM, ~741 KiB, pure C). It implements the ts2021 control plane, WireGuard from scratch, DISCO/STUN NAT traversal and a DERP fallback.
 
-- **Linux kernel — `mt76` / MT7921U wireless subsystem.** Active interest in driver-level recovery and power management. Earlier submissions to `linux-wireless` are being revisited and refined.
-- **`pop-os/cosmic-comp`** (Wayland compositor, Rust) — identified tiling geometry bug triggered by fullscreen requests from tiled windows. Root cause traced to `update_positions()` in `tiling/mod.rs` after ruling out PR #2099 as a fix. Filed as [issue #2146](https://github.com/pop-os/cosmic-comp/issues/2146).
+## Upstream reports
 
----
+- `espressif/esp-idf` [#18574](https://github.com/espressif/esp-idf/issues/18574): the DHCP client callback panics on custom netifs.
+- `pop-os/cosmic-comp` [#2146](https://github.com/pop-os/cosmic-comp/issues/2146): a tiled sibling window shrinks when another window goes fullscreen.
+- `frappe/frappe` [#37799](https://github.com/frappe/frappe/issues/37799): `remove_orphan_doctypes()` deletes custom-app DocTypes on migrate.
+- `Dolibarr/dolibarr` [#37227](https://github.com/Dolibarr/dolibarr/issues/37227) and [#37266](https://github.com/Dolibarr/dolibarr/issues/37266).
 
-## Methodology
+## Focus
 
-Source-first: read the codebase, trace data flows, reproduce in isolated lab, document. All vulnerability identification is human-driven. AI assistance is limited to documentation drafting and is disclosed when used. Per-finding audit trails (grep histories, taintability notes, lab reproduction logs) available on request.
+PHP web applications · Linux kernel drivers · embedded (ESP32 / ESP-IDF) · WireGuard and Tailscale · Colombian e-invoicing (UBL 2.1, XAdES)
 
-Disclosure follows coordinated standards: vendor-first contact, 90-day default timeline, CERT/CC escalation when needed, MITRE Primary assignment when the CNA chain fails. Comfortable navigating adversarial coordination — see Dolibarr 2026 case for a documented MITRE Primary override after vendor-CNA refused assignment.
-
----
-
-## Areas of focus
-
-- PHP web application security (ERP/CRM, large legacy codebases, eval-injection patterns)
-- Linux kernel drivers (mt76 / wireless / USB recovery)
-- Embedded firmware and network appliances
-
-## Stack
-
-`PHP` · `Python` · `Rust` · `C` · `Bash` · Linux kernel (mt76, USB, networking) · Podman Quadlets · libvirtd · Tailscale · MariaDB · SQLite · UBL 2.1 / XAdES-BES (DIAN compliance research).
+`C` · `PHP` · `Python` · `Rust` · `Bash`
 
 ---
 
-## Contact
-
-- GitHub — [@bryamzxz](https://github.com/bryamzxz)
-
-Open to remote positions in application security, vulnerability research, and FOSS audit. Particularly interested in boutiques where research output is valued over volume metrics.
-
-<!---
-bryamzxz/bryamzxz is a special repository because its README.md appears on the GitHub profile.
---->
+Vulnerability identification is human-driven. AI assistance is limited to documentation and is disclosed when used. The default disclosure window is 90 days; [details here](https://bryamzxz.github.io/about/).
+Open to application security and vulnerability research work.
